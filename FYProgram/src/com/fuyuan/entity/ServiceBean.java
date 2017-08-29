@@ -1,10 +1,11 @@
-package com.zykie.model;
+package com.fuyuan.entity;
 
-public class ServiceBean {
+public class ServiceBean extends Page{
 	
 	private int serviceId;
 	private String serviceName;
 	private String centerType;
+	
 	public int getServiceId() {
 		return serviceId;
 	}

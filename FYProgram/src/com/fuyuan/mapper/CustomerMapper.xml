@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.fuyuan.dao.CustomerDao">
+
+<resultMap type="com.fuyuan.entity.CustomerBean" id="customerMap">
+	<result column="CustomerName" property="customerName" jdbcType="VARCHAR" />
+	<result column="ReceiverName" property="receiverName" jdbcType="VARCHAR" />
+	<result column="Telephone" property="telephone" jdbcType="VARCHAR" />
+</resultMap>
+
+<sql id="customerWhereClause">
+	<where>
+		<if test="customerId != 0">
+			customerId = #{customerId}
+		</if>
+		<if test="customerName!=null and customerName!=''">
+			CustomerName LIKE CONCAT(CONCAT('%', #{customerName}),'%')
+		</if>
+		<if test="receiverName!=null and receiverName!=''">
+			ReceiverName LIKE CONCAT(CONCAT('%', #{receiverName}),'%')
+		</if>
+		<if test="telephone!=null and telephone!=''">
+			Telephone LIKE CONCAT(CONCAT('%', #{telephone}),'%')
+		</if>
+	</where>
+</sql>
+
+<!-- 查询全部的客户 -->
+<select id="findAll" 
+    resultType="com.fuyuan.entity.CustomerBean">
+    select * from t_customer
+</select>
+
+<!-- 按条件查询客户 -->
+<select id="find" 
+    resultType="com.fuyuan.entity.CustomerBean">
+    select * from t_customer
+    <include refid="customerWhereClause"/>
+</select>
+
+<!-- 查询计数 -->
+<select id="countByCustomer" 
+    parameterType="com.fuyuan.entity.CustomerBean"  resultType="java.lang.Integer">
+    select count(*) from t_customer
+    <include refid="customerWhereClause"/>
+</select>
+
+</mapper>

@@ -1,4 +1,4 @@
-package com.zykie.dao;
+package com.fuyuan.dao;
 
 import org.springframework.stereotype.Repository;
 

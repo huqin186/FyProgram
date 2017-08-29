@@ -1,4 +1,4 @@
-package com.zykie.model;
+package com.fuyuan.entity;
 
 import java.sql.Timestamp;
 

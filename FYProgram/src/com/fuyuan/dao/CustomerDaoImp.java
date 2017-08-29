@@ -1,4 +1,4 @@
-package com.zykie.dao;
+package com.fuyuan.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
-import com.zykie.model.CustomerBean;
-import com.zykie.model.Page;
-import com.zykie.util.DbUtil;
+import com.fuyuan.entity.CustomerBean;
+import com.fuyuan.entity.Page;
+import com.fuyuan.util.DbUtil;
 
 @Repository
 public class CustomerDaoImp {
 	
-	public int find(CustomerBean customer, ArrayList<CustomerBean> array, Page page) {
+	public int find(CustomerBean customer, ArrayList<CustomerBean> array) {
         Connection con = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -35,10 +35,10 @@ public class CustomerDaoImp {
         		where_field += where_field.contains(" where")?" and":" where";
         		where_field += " Telephone like \"%" + customer.getTelephone() + "%\"";
 			}
-        	if (page.getSidx() != null && !page.getSidx().isEmpty()){
-        		group_field += " order by "+page.getSidx() + " " + page.getSord();
+        	if (customer.getSidx() != null && !customer.getSidx().isEmpty()){
+        		group_field += " order by "+customer.getSidx() + " " + customer.getSord();
 			}
-        	sql += " from t_customer" + group_field +where_field+ " limit " + page.getStartRow()+","+page.getRows();
+        	sql += " from t_customer" + group_field +where_field+ " limit " + customer.getStartRow()+","+customer.getRows();
         	System.out.println(sql);
             con = DbUtil.getConnection();
             stmt = con.createStatement();

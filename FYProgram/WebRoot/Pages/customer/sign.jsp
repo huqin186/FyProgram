@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
 <%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -332,7 +333,7 @@
 					}
 					$.ajax({
 						type : "post",
-						url : "/FYProgram/service/searchAjax.do",
+						url : "${ctx}/service/searchAjax.do",
 						data : {"CenterType":CenterType},
 						dataType : "json",
 						success : function(response){

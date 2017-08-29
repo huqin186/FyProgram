@@ -1,8 +1,8 @@
-package com.zykie.model;
+package com.fuyuan.entity;
 
 import java.sql.Timestamp;
 
-public class CustomerBean {
+public class CustomerBean extends Page{
 	
 	private int customerId;
 	private String telephone;

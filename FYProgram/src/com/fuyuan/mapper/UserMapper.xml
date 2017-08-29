@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.fuyuan.dao.UserDao">
+
+<resultMap type="com.fuyuan.entity.UserBean" id="userMap">
+	<result column="CustomerName" property="customerName" jdbcType="VARCHAR" />
+	<result column="ReceiverName" property="receiverName" jdbcType="VARCHAR" />
+	<result column="CustomerName" property="customerName" jdbcType="VARCHAR" />
+</resultMap>
+
+<!-- 查询全部的用户 -->
+<select id="findAll" 
+    resultType="com.fuyuan.entity.UserBean">
+    select * from ts_user
+</select>
+
+</mapper>

@@ -1,4 +1,4 @@
-package com.zykie.util;
+package com.fuyuan.util;
 
 public class Util {
 	

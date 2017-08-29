@@ -1,7 +1,8 @@
-package com.zykie.controller;
+package com.fuyuan.controller;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -13,35 +14,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.zykie.dao.CustomerDaoImp;
-import com.zykie.model.CustomerBean;
-import com.zykie.model.Page;
+import com.fuyuan.dao.CustomerDao;
+import com.fuyuan.dao.CustomerDaoImp;
+import com.fuyuan.entity.CustomerBean;
+import com.fuyuan.entity.Page;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 	
-	@Resource(name="customerDaoImp")
-	CustomerDaoImp cDao;
+	@Resource(name="customerDao")
+	CustomerDao cDao;
 	
 	@RequestMapping("/toList")
-	public String toList(CustomerBean customer, Page page, Model model, HttpServletRequest request, HttpServletResponse response){
+	public String toList(CustomerBean customer, Model model, HttpServletRequest request, HttpServletResponse response){
 		System.out.println("-------------------"+customer);
-		ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
-		int totalRows = cDao.find(customer, array, page);
+//		ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
+		List<CustomerBean> array = cDao.find(customer);
 		model.addAttribute("data", JSONArray.fromObject(array).toString());
 		model.addAttribute("obj", customer);
 		return "customer/list";
 	}
 	
 	@RequestMapping("/list")
-	public String listAll(CustomerBean customer, Page page, Model model, HttpServletRequest request, HttpServletResponse response){
+	public String listAll(CustomerBean customer, Model model, HttpServletRequest request, HttpServletResponse response){
 		try {
 //			int curPage = Integer.parseInt(request.getParameter("curPage"));
 //			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 //			int startRow = pageSize * (curPage - 1);
-			ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
-			int totalRows = cDao.find(customer, array, page);
+//			ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
+			List<CustomerBean> array = cDao.find(customer);
 			model.addAttribute("data", array);
 			model.addAttribute("obj", customer);
 			return "customer/customerList";
@@ -78,14 +80,15 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("/listAjax")
-	public String list(CustomerBean customer, Page page, Model model, HttpServletRequest request, HttpServletResponse response){
+	public String list(CustomerBean customer, Model model, HttpServletRequest request, HttpServletResponse response){
 		try {
-			ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
-			int records = cDao.find(customer, array, page);
-			page.setRecords(records);
+			//ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
+			List<CustomerBean> array = cDao.find(customer);
+			int records = cDao.countByCustomer(customer);
+			customer.setRecords(records);
 			String jsonStr = null;
 			if (records > 0) {
-				jsonStr = "{\"page\": "+page.getPage()+", \"total\": " + page.getTotal() + ", \"records\": " + records + " , \"rows\":[";
+				jsonStr = "{\"page\": "+customer.getPage()+", \"total\": " + customer.getTotal() + ", \"records\": " + records + " , \"rows\":[";
 				CustomerBean form = null;
 				for (int i=0; i<array.size(); i++) {
 					if(i!=0){
@@ -119,26 +122,26 @@ public class CustomerController {
 	@RequestMapping("/view")
 	public String view(CustomerBean customer, Model model, HttpServletRequest request, HttpServletResponse response){
 		System.out.println("-------------------"+customer);
-		ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
-		CustomerBean cus = cDao.findById(customer.getCustomerId());
-		model.addAttribute("obj", cus);
+		//ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
+		List<CustomerBean> array = cDao.find(customer);
+		model.addAttribute("obj", array.get(0));
 		return "customer/view";
 	}
 	
 	@RequestMapping("/toSign")
 	public String toSign(CustomerBean customer, Model model, HttpServletRequest request, HttpServletResponse response){
 		System.out.println("-------------------"+customer);
-		ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
-		CustomerBean cus = cDao.findById(customer.getCustomerId());
-		model.addAttribute("obj", cus);
+		//ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
+		List<CustomerBean> array = cDao.find(customer);
+		model.addAttribute("obj", array.get(0));
 		return "customer/sign";
 	}
 	@RequestMapping("/sign")
 	public String sign(CustomerBean customer, Model model, HttpServletRequest request, HttpServletResponse response){
 		System.out.println("-------------------"+customer);
-		ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
-		CustomerBean cus = cDao.findById(customer.getCustomerId());
-		model.addAttribute("obj", cus);
+		//ArrayList<CustomerBean> array = new ArrayList<CustomerBean>();
+		List<CustomerBean> array = cDao.find(customer);
+		model.addAttribute("obj", array.get(0));
 		return "customer/sign";
 	}
 

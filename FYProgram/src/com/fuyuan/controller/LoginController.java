@@ -1,4 +1,4 @@
-package com.zykie.controller;
+package com.fuyuan.controller;
 
 import org.springframework.stereotype.Controller;
 

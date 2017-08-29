@@ -99,7 +99,7 @@
 									<input type="text" id="telephone" name="telephone" value="${obj.telephone}">
 								</label>
 								<button class="btn btn-minier btn-primary" id="searchBtn">搜索</button>
-								<a class="btn btn-minier btn-danger" href="/FYProgram/Pages/customer/edit.jsp">新增</a>
+								<a class="btn btn-minier btn-danger" href="${ctx}/Pages/customer/edit.jsp">新增</a>
 							</div>
 						</div>
 						<div class="row">
@@ -232,10 +232,10 @@
 						{label: '详情', name: '', index: 'operate', width: 50, align: 'center',
 	                    	formatter: function (cellvalue, options, rowObject) {
 	                        return "<div class=\"visible-md visible-lg hidden-sm hidden-xs action-buttons\">"+
-										"<a class=\"blue\" href=\"/FYProgram/customer/view.do?customerId="+rowObject.customerId+"\">"+
+										"<a class=\"blue\" href=\"${ctx}/customer/view.do?customerId="+rowObject.customerId+"\">"+
 											"<i class=\"icon-zoom-in bigger-130\"></i></a>"+
 										"<a class=\"green\" href=\"#\"><i class=\"icon-pencil bigger-130\"></i></a>"+
-										"<a class=\"red\" href=\"/FYProgram/customer/sign.do?customerId="+rowObject.customerId+"\">"+
+										"<a class=\"red\" href=\"${ctx}/customer/sign.do?customerId="+rowObject.customerId+"\">"+
 											"<i class=\"icon-check bigger-130\"></i></a></div>";
 	                    }
 	                    }

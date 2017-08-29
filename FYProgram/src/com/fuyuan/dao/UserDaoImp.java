@@ -1,4 +1,4 @@
-package com.zykie.dao;
+package com.fuyuan.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,8 +7,8 @@ import java.sql.Statement;
 
 import org.springframework.stereotype.Repository;
 
-import com.zykie.model.UserBean;
-import com.zykie.util.DbUtil;
+import com.fuyuan.entity.UserBean;
+import com.fuyuan.util.DbUtil;
 
 @Repository
 public class UserDaoImp {

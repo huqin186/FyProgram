@@ -1,4 +1,4 @@
-package com.zykie.dao;
+package com.fuyuan.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Repository;
 
-import com.zykie.model.Page;
-import com.zykie.model.ServiceBean;
-import com.zykie.util.DbUtil;
+import com.fuyuan.entity.Page;
+import com.fuyuan.entity.ServiceBean;
+import com.fuyuan.util.DbUtil;
 
 @Repository
 public class ServiceDaoImp {
