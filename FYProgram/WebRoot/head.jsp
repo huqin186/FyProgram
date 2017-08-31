@@ -24,3 +24,4 @@
 <script src="${ctx}/assets/js/ace-elements.min.js"></script>
 <script src="${ctx}/assets/js/ace.min.js"></script>
 <script src="${ctx}/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="${ctx}/js/Utils.js"></script>

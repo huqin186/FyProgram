@@ -3,6 +3,7 @@ package com.fuyuan.dao;
 import java.util.List;
 
 import com.fuyuan.annotation.MyBatisRepository;
+import com.fuyuan.entity.RoomBean;
 import com.fuyuan.entity.ServiceBean;
 
 /**
@@ -11,6 +12,8 @@ import com.fuyuan.entity.ServiceBean;
 @MyBatisRepository
 public interface ServiceDao {
 	
-	List<ServiceBean> search(ServiceBean service);
+	List<ServiceBean> serviceSearch(ServiceBean service);
+	
+	List<RoomBean> roomSearch(RoomBean room);
 	
 }

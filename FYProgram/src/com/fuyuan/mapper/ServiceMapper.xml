@@ -15,16 +15,44 @@
 			CenterType = #{centerType}
 		</if>
 		<if test="serviceName!=null and serviceName!=''">
-			ServiceName LIKE CONCAT(CONCAT('%', #{serviceName}),'%')
+			AND ServiceName LIKE CONCAT(CONCAT('%', #{serviceName}),'%')
 		</if>
 	</where>
 </sql>
 
-<!-- 查询全部的客户 -->
-<select id="search" 
+<resultMap type="com.fuyuan.entity.RoomBean" id="roomMap">
+	<result column="roomId" property="roomId" jdbcType="INTEGER" />
+	<result column="roomNumber" property="roomNumber" jdbcType="VARCHAR" />
+	<result column="center" property="center" jdbcType="VARCHAR" />
+	<result column="roomType" property="roomType" jdbcType="VARCHAR" />
+</resultMap>
+
+<sql id="roomWhereClause">
+	<where>
+		<if test="roomId!=null and roomId!=0">
+			roomId = #{roomId}
+		</if>
+		<if test="center!=null and center!=''">
+			AND center = #{center}
+		</if>
+		<if test="roomType!=null and roomType!=''">
+			AND roomType = #{roomType}
+		</if>
+	</where>
+</sql>
+
+<!-- -->
+<select id="serviceSearch" 
     resultType="com.fuyuan.entity.ServiceBean">
     select * from t_service
     <include refid="serviceWhereClause"/>
+</select>
+
+<!-- -->
+<select id="roomSearch" 
+    resultType="com.fuyuan.entity.RoomBean">
+    select * from t_service_room
+    <include refid="roomWhereClause"/>
 </select>
 
 </mapper>

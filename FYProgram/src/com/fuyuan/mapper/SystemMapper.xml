@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.fuyuan.dao.SystemDao">
+
+<resultMap type="com.fuyuan.entity.DictionaryBean" id="dictionaryMap">
+	<result column="id" property="id" jdbcType="INTEGER" />
+	<result column="code" property="code" jdbcType="VARCHAR" />
+	<result column="text" property="text" jdbcType="VARCHAR" />
+	<result column="status" property="status" jdbcType="INTEGER" />
+	<result column="subId" property="subId" jdbcType="INTEGER" />
+	<result column="sort" property="sort" jdbcType="INTEGER" />
+	<result column="value" property="value" jdbcType="INTEGER" />
+	<result column="subText" property="subText" jdbcType="VARCHAR" />
+</resultMap>
+
+<sql id="dictionaryWhereClause">
+	<where>
+		<if test="id != '' and id != null">
+			b.id = #{id}
+		</if>
+	</where>
+</sql>
+
+<!--  -->
+<select id="getDictList" 
+    resultType="com.fuyuan.entity.DictionaryBean">
+    select * from dictionary_type
+</select>
+
+<select id="getSubDictList" 
+    resultType="com.fuyuan.entity.DictionaryBean">
+    SELECT 
+    	a.TYPE_ID id,b.CODE code,b.TEXT text,b.STATUS status,a.ID subId,a.SORT sort,a.VALUE value,a.TEXT subText
+    FROM
+    	dictionary_item a left join dictionary_type b on a.TYPE_ID=b.ID
+    <include refid="dictionaryWhereClause"/>
+</select>
+
+</mapper>

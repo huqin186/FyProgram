@@ -37,6 +37,10 @@
     resultType="com.fuyuan.entity.CustomerBean">
     select * from t_customer
     <include refid="customerWhereClause"/>
+    <if test="sidx!=null and sidx!=''">
+		order by ${sidx} ${sord}
+	</if>
+    limit #{startRow},#{rows}
 </select>
 
 <!-- 查询计数 -->

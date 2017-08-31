@@ -371,7 +371,7 @@
 							</a>
 						</li>
 
-						<li class="active open">
+						<li>
 							<a href="#" class="dropdown-toggle">
 								<i class="icon-list"></i>
 								<span class="menu-text"> 表格 </span>
@@ -394,6 +394,24 @@
 									</a>
 								</li>
 								 -->
+							</ul>
+						</li>
+						
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-list"></i>
+								<span class="menu-text"> 系统管理  </span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a target="MyFrame" href="Pages/system/datadictionary.jsp">
+										<i class="icon-double-angle-right"></i>
+										数据字典
+									</a>
+								</li>
 							</ul>
 						</li>
 					</ul><!-- /.nav-list -->

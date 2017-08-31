@@ -56,7 +56,7 @@
 	</head>
 
 	<body>
-
+		<div class="main-container" id="main-container">
 			<script type="text/javascript">
 				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
 			</script>
@@ -64,7 +64,7 @@
 				<a class="menu-toggler" id="menu-toggler" href="#">
 					<span class="menu-text"></span>
 				</a>
-
+					<div class="main-container-inner">
 
 					<div class="breadcrumbs" id="breadcrumbs">
 						<script type="text/javascript">
@@ -74,17 +74,11 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
-								<a href="#">主页</a>
-							</li>
-
-							<li>
 								<a href="#">客户管理</a>
 							</li>
 							<li class="active">客户详情</li>
 						</ul><!-- .breadcrumb -->
 
-						<div class="nav-search" id="nav-search">
-						</div><!-- #nav-search -->
 					</div>
 
 					<div class="page-content">
@@ -118,7 +112,8 @@
 							</div><!-- /.col -->
 						</div><!-- /.row -->
 					</div><!-- /.page-content -->
-
+					</div>
+					</div>
 
 
 		<!-- basic scripts -->
@@ -226,7 +221,7 @@
 						{name:'customerName',index:'customerName', width:60, editable: true, sorttype:"string"},
 						{name:'telephone',index:'telephone',width:90, editable:true, sorttype:"string"},
 						{name:'address',index:'address',width:160, editable:true, sorttype:"string"},
-						{name:'dueDate',index:'dueDate', width:150,editable: true,sorttype:"date",unformat: pickDate},
+						{name:'dueDate',index:'dueDate', width:150,editable: true,sorttype:"date",unformat: pickDate,formatter:function(cellvalue, options, row){return cellvalue.substring(0,10);}},
 						{name:'receiverName',index:'receiverName', width:90, editable: true, sorttype:"string"},
 						{name:'contactTime',index:'contactTime', width:150, editable: true,sorttype:"date",unformat: pickDate},
 						{label: '详情', name: '', index: 'operate', width: 50, align: 'center',
@@ -263,7 +258,7 @@
 						}, 0);
 					},
 			
-					editurl: $path_base+"/dummy.html",//nothing is saved
+					editurl: "/dummy.html",//nothing is saved
 					caption: "客户信息",
 			
 			

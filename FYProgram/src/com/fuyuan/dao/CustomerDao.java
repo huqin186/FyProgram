@@ -6,7 +6,7 @@ import com.fuyuan.annotation.MyBatisRepository;
 import com.fuyuan.entity.CustomerBean;
 
 /**
- * 用户表的DAO组件
+ * 客户表的DAO组件
  */
 @MyBatisRepository
 public interface CustomerDao {
